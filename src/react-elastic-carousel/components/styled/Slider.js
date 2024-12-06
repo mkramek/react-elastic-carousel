@@ -59,6 +59,7 @@ export default styled.div.withConfig({
       "transitionMs",
       "easing",
       "tiltEasing",
+      "outerSpacing",
     ].includes(prop),
 })`
   position: absolute;

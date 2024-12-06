@@ -4,7 +4,7 @@ import { cssPrefix } from "../../utils/helpers";
 import consts from "../../consts";
 
 const ItemWrapper = styled.div.withConfig({
-  shouldForwardProp: (prop) => prop !== "itemPosition",
+  shouldForwardProp: (prop) => !["itemPosition", "isRTL"].includes(prop),
 })`
   box-sizing: border-box;
   display: flex;

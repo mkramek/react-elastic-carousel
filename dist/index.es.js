@@ -386,7 +386,7 @@ function _templateObject$1() {
 }
 var ItemWrapper = styled.div.withConfig({
   shouldForwardProp: function shouldForwardProp(prop) {
-    return prop !== "itemPosition";
+    return !["itemPosition", "isRTL"].includes(prop);
   }
 })(_templateObject$1(), function (_ref) {
   var itemPosition = _ref.itemPosition;
@@ -477,7 +477,7 @@ var calcTransition = function calcTransition(_ref4) {
 
 var Slider = styled.div.withConfig({
   shouldForwardProp: function shouldForwardProp(prop) {
-    return !["isSwiping", "verticalMode", "sliderPosition", "swipedSliderPosition", "isRTL", "transitionMs", "easing", "tiltEasing"].includes(prop);
+    return !["isSwiping", "verticalMode", "sliderPosition", "swipedSliderPosition", "isRTL", "transitionMs", "easing", "tiltEasing", "outerSpacing"].includes(prop);
   }
 })(_templateObject$3(), function (_ref5) {
   var verticalMode = _ref5.verticalMode;
