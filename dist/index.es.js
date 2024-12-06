@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import React$1, { Children } from 'react';
+import React, { Children } from 'react';
 import { Swipeable } from 'react-swipeable';
 import cx from 'classnames';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -477,12 +477,7 @@ var calcTransition = function calcTransition(_ref4) {
 }; // We use attributes (style) to bypass multiple creation of classes (dynamic styling)
 
 
-function _Slider(sliderProps) {
-  /*#__PURE__*/
-  React.createElement("div", null, sliderProps.children);
-}
-
-var Slider = styled(_Slider).attrs(function (props) {
+var Slider = styled.div.attrs(function (props) {
   return {
     style: {
       transition: calcTransition(props),
@@ -491,12 +486,16 @@ var Slider = styled(_Slider).attrs(function (props) {
       top: calcTop(props)
     }
   };
-})(_templateObject$3(), function (props) {
-  return props.verticalMode ? "column" : "row";
-}, function (props) {
-  return props.verticalMode ? "min-height: 100%;" : "";
-}, function (props) {
-  return props.verticalMode ? "" : "margin: 0 ".concat(props.outerSpacing, "px;");
+})(_templateObject$3(), function (_ref5) {
+  var verticalMode = _ref5.verticalMode;
+  return verticalMode ? "column" : "row";
+}, function (_ref6) {
+  var verticalMode = _ref6.verticalMode;
+  return verticalMode ? "min-height: 100%;" : "";
+}, function (_ref7) {
+  var verticalMode = _ref7.verticalMode,
+      outerSpacing = _ref7.outerSpacing;
+  return verticalMode ? "" : "margin: 0 ".concat(outerSpacing, "px;");
 });
 
 function _templateObject$4() {
@@ -559,14 +558,14 @@ var ItemWrapperContainer = /*#__PURE__*/function (_React$Component) {
   _createClass(ItemWrapperContainer, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React$1.createElement(ItemWrapper, _extends({}, this.props, {
+      return /*#__PURE__*/React.createElement(ItemWrapper, _extends({}, this.props, {
         onClick: this.onClick
       }));
     }
   }]);
 
   return ItemWrapperContainer;
-}(React$1.Component);
+}(React.Component);
 
 ItemWrapperContainer.defaultProps = {
   onClick: noop
@@ -598,17 +597,17 @@ var Track = function Track(_ref) {
   var maxVisibleItem = currentItem + itemsToShow;
   var prevItem = minVisibleItem - itemsToScroll;
   var nextItem = maxVisibleItem + itemsToScroll;
-  var originalChildren = React$1.Children.map(children, function (child, idx) {
+  var originalChildren = React.Children.map(children, function (child, idx) {
     var isVisible = idx >= minVisibleItem && idx < maxVisibleItem;
     var isPrevItem = !isVisible && idx >= prevItem && idx < currentItem;
     var isNextItem = !isVisible && idx < nextItem && idx > currentItem;
     var itemClass = "carousel-item";
-    var childToRender = autoTabIndexVisibleItems ? /*#__PURE__*/React$1.cloneElement(child, {
+    var childToRender = autoTabIndexVisibleItems ? /*#__PURE__*/React.cloneElement(child, {
       tabIndex: isVisible ? 0 : -1
     }) : child;
-    return /*#__PURE__*/React$1.createElement("div", {
+    return /*#__PURE__*/React.createElement("div", {
       className: cssPrefix(itemClass, "".concat(itemClass, "-").concat(idx), "".concat(itemClass, "-").concat(isVisible ? "visible" : "hidden"), isPrevItem && "".concat(itemClass, "-prev"), isNextItem && "".concat(itemClass, "-next"))
-    }, /*#__PURE__*/React$1.createElement(ItemWrapperContainer, {
+    }, /*#__PURE__*/React.createElement(ItemWrapperContainer, {
       id: idx,
       itemPosition: itemPosition,
       style: {
@@ -619,7 +618,7 @@ var Track = function Track(_ref) {
       onClick: onItemClick
     }, childToRender));
   });
-  var toRender = enableSwipe ? /*#__PURE__*/React$1.createElement(Swipeable, {
+  var toRender = enableSwipe ? /*#__PURE__*/React.createElement(Swipeable, {
     style: {
       display: "flex",
       flexDirection: verticalMode ? "column" : "row"
@@ -680,7 +679,7 @@ var Arrow = function Arrow(_ref) {
 
   var styleObj = _objectSpread2(_objectSpread2({}, rotateStyle(direction)), style);
 
-  return /*#__PURE__*/React$1.createElement(Button, _extends({
+  return /*#__PURE__*/React.createElement(Button, _extends({
     tabIndex: 0,
     onClick: onClick,
     className: cx(arrowClassname, "".concat(arrowClassname, "-").concat(direction)),
@@ -801,7 +800,7 @@ var DotContainer = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var active = this.props.active;
-      return /*#__PURE__*/React$1.createElement(Dot, {
+      return /*#__PURE__*/React.createElement(Dot, {
         tabIndex: active ? -1 : 0,
         onClick: this.onClick,
         active: active,
@@ -811,7 +810,7 @@ var DotContainer = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return DotContainer;
-}(React$1.Component);
+}(React.Component);
 
 DotContainer.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -849,10 +848,10 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
           activePage = _this$props.activePage,
           onClick = _this$props.onClick;
       var pages = numberToArray(numOfPages);
-      return /*#__PURE__*/React$1.createElement(Indicators, {
+      return /*#__PURE__*/React.createElement(Indicators, {
         className: cssPrefix("pagination")
       }, pages.map(function (item, i) {
-        return /*#__PURE__*/React$1.createElement(DotContainer, {
+        return /*#__PURE__*/React.createElement(DotContainer, {
           key: i,
           id: i,
           active: i === activePage,
@@ -863,7 +862,7 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Pagination;
-}(React$1.Component);
+}(React.Component);
 
 Pagination.defaultProps = {
   onClick: noop
@@ -1802,29 +1801,29 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
       var canSlideNext = activeIndex !== this.getNextItemIndex(activeIndex, false);
       var disabledPrevArrow = !canSlidePrev && disableArrowsOnEnd;
       var disabledNextArrow = !canSlideNext && disableArrowsOnEnd;
-      return /*#__PURE__*/React$1.createElement(CarouselWrapper, {
+      return /*#__PURE__*/React.createElement(CarouselWrapper, {
         isRTL: isRTL,
         className: "".concat(cssPrefix("carousel-wrapper"), " ").concat(className),
         style: style
-      }, /*#__PURE__*/React$1.createElement(StyledCarousel, {
+      }, /*#__PURE__*/React.createElement(StyledCarousel, {
         className: cssPrefix("carousel"),
         size: {
           height: rootHeight
         }
-      }, /*#__PURE__*/React$1.createElement(Only, {
+      }, /*#__PURE__*/React.createElement(Only, {
         when: showArrows
       }, renderArrow ? renderArrow({
         type: consts.PREV,
         onClick: this.onPrevStart,
         isEdge: !canSlidePrev
-      }) : /*#__PURE__*/React$1.createElement(Arrow, {
+      }) : /*#__PURE__*/React.createElement(Arrow, {
         onClick: this.onPrevStart,
         direction: verticalMode ? Arrow.up : Arrow.left,
         disabled: disabledPrevArrow
-      })), /*#__PURE__*/React$1.createElement(SliderContainer, {
+      })), /*#__PURE__*/React.createElement(SliderContainer, {
         className: cssPrefix("slider-container"),
         ref: this.setRef("sliderContainer")
-      }, /*#__PURE__*/React$1.createElement(Slider, {
+      }, /*#__PURE__*/React.createElement(Slider, {
         verticalMode: verticalMode,
         isRTL: isRTL,
         easing: easing,
@@ -1836,7 +1835,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
         className: cssPrefix("slider"),
         ref: this.setRef("slider"),
         outerSpacing: outerSpacing
-      }, /*#__PURE__*/React$1.createElement(Track, {
+      }, /*#__PURE__*/React.createElement(Track, {
         verticalMode: verticalMode,
         children: Children.toArray(children),
         childWidth: childWidth,
@@ -1852,23 +1851,23 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
         onSwiped: this.onSwiped,
         onSwiping: this.onSwiping,
         onItemClick: focusOnSelect ? this.goTo : undefined
-      }))), /*#__PURE__*/React$1.createElement(Only, {
+      }))), /*#__PURE__*/React.createElement(Only, {
         when: showArrows
       }, renderArrow ? renderArrow({
         type: consts.NEXT,
         onClick: this.onNextStart,
         isEdge: !canSlideNext
-      }) : /*#__PURE__*/React$1.createElement(Arrow, {
+      }) : /*#__PURE__*/React.createElement(Arrow, {
         onClick: this.onNextStart,
         direction: verticalMode ? Arrow.down : Arrow.right,
         disabled: disabledNextArrow
-      }))), /*#__PURE__*/React$1.createElement(Only, {
+      }))), /*#__PURE__*/React.createElement(Only, {
         when: pagination
       }, renderPagination ? renderPagination({
         pages: pages,
         activePage: activePage,
         onClick: this.onIndicatorClick
-      }) : /*#__PURE__*/React$1.createElement(Pagination, {
+      }) : /*#__PURE__*/React.createElement(Pagination, {
         numOfPages: numOfPages,
         activePage: activePage,
         onClick: this.onIndicatorClick
@@ -1877,7 +1876,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Carousel;
-}(React$1.Component);
+}(React.Component);
 
 Carousel.defaultProps = {
   className: "",

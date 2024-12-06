@@ -6,8 +6,8 @@ function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'defau
 
 var styled = _interopDefault(require('styled-components'));
 var PropTypes = _interopDefault(require('prop-types'));
-var React$1 = require('react');
-var React$1__default = _interopDefault(React$1);
+var React = require('react');
+var React__default = _interopDefault(React);
 var reactSwipeable = require('react-swipeable');
 var cx = _interopDefault(require('classnames'));
 var ResizeObserver = _interopDefault(require('resize-observer-polyfill'));
@@ -484,12 +484,7 @@ var calcTransition = function calcTransition(_ref4) {
 }; // We use attributes (style) to bypass multiple creation of classes (dynamic styling)
 
 
-function _Slider(sliderProps) {
-  /*#__PURE__*/
-  React.createElement("div", null, sliderProps.children);
-}
-
-var Slider = styled(_Slider).attrs(function (props) {
+var Slider = styled.div.attrs(function (props) {
   return {
     style: {
       transition: calcTransition(props),
@@ -498,12 +493,16 @@ var Slider = styled(_Slider).attrs(function (props) {
       top: calcTop(props)
     }
   };
-})(_templateObject$3(), function (props) {
-  return props.verticalMode ? "column" : "row";
-}, function (props) {
-  return props.verticalMode ? "min-height: 100%;" : "";
-}, function (props) {
-  return props.verticalMode ? "" : "margin: 0 ".concat(props.outerSpacing, "px;");
+})(_templateObject$3(), function (_ref5) {
+  var verticalMode = _ref5.verticalMode;
+  return verticalMode ? "column" : "row";
+}, function (_ref6) {
+  var verticalMode = _ref6.verticalMode;
+  return verticalMode ? "min-height: 100%;" : "";
+}, function (_ref7) {
+  var verticalMode = _ref7.verticalMode,
+      outerSpacing = _ref7.outerSpacing;
+  return verticalMode ? "" : "margin: 0 ".concat(outerSpacing, "px;");
 });
 
 function _templateObject$4() {
@@ -566,14 +565,14 @@ var ItemWrapperContainer = /*#__PURE__*/function (_React$Component) {
   _createClass(ItemWrapperContainer, [{
     key: "render",
     value: function render() {
-      return /*#__PURE__*/React$1__default.createElement(ItemWrapper, _extends({}, this.props, {
+      return /*#__PURE__*/React__default.createElement(ItemWrapper, _extends({}, this.props, {
         onClick: this.onClick
       }));
     }
   }]);
 
   return ItemWrapperContainer;
-}(React$1__default.Component);
+}(React__default.Component);
 
 ItemWrapperContainer.defaultProps = {
   onClick: noop
@@ -605,17 +604,17 @@ var Track = function Track(_ref) {
   var maxVisibleItem = currentItem + itemsToShow;
   var prevItem = minVisibleItem - itemsToScroll;
   var nextItem = maxVisibleItem + itemsToScroll;
-  var originalChildren = React$1__default.Children.map(children, function (child, idx) {
+  var originalChildren = React__default.Children.map(children, function (child, idx) {
     var isVisible = idx >= minVisibleItem && idx < maxVisibleItem;
     var isPrevItem = !isVisible && idx >= prevItem && idx < currentItem;
     var isNextItem = !isVisible && idx < nextItem && idx > currentItem;
     var itemClass = "carousel-item";
-    var childToRender = autoTabIndexVisibleItems ? /*#__PURE__*/React$1__default.cloneElement(child, {
+    var childToRender = autoTabIndexVisibleItems ? /*#__PURE__*/React__default.cloneElement(child, {
       tabIndex: isVisible ? 0 : -1
     }) : child;
-    return /*#__PURE__*/React$1__default.createElement("div", {
+    return /*#__PURE__*/React__default.createElement("div", {
       className: cssPrefix(itemClass, "".concat(itemClass, "-").concat(idx), "".concat(itemClass, "-").concat(isVisible ? "visible" : "hidden"), isPrevItem && "".concat(itemClass, "-prev"), isNextItem && "".concat(itemClass, "-next"))
-    }, /*#__PURE__*/React$1__default.createElement(ItemWrapperContainer, {
+    }, /*#__PURE__*/React__default.createElement(ItemWrapperContainer, {
       id: idx,
       itemPosition: itemPosition,
       style: {
@@ -626,7 +625,7 @@ var Track = function Track(_ref) {
       onClick: onItemClick
     }, childToRender));
   });
-  var toRender = enableSwipe ? /*#__PURE__*/React$1__default.createElement(reactSwipeable.Swipeable, {
+  var toRender = enableSwipe ? /*#__PURE__*/React__default.createElement(reactSwipeable.Swipeable, {
     style: {
       display: "flex",
       flexDirection: verticalMode ? "column" : "row"
@@ -687,7 +686,7 @@ var Arrow = function Arrow(_ref) {
 
   var styleObj = _objectSpread2(_objectSpread2({}, rotateStyle(direction)), style);
 
-  return /*#__PURE__*/React$1__default.createElement(Button, _extends({
+  return /*#__PURE__*/React__default.createElement(Button, _extends({
     tabIndex: 0,
     onClick: onClick,
     className: cx(arrowClassname, "".concat(arrowClassname, "-").concat(direction)),
@@ -808,7 +807,7 @@ var DotContainer = /*#__PURE__*/function (_React$Component) {
     key: "render",
     value: function render() {
       var active = this.props.active;
-      return /*#__PURE__*/React$1__default.createElement(Dot, {
+      return /*#__PURE__*/React__default.createElement(Dot, {
         tabIndex: active ? -1 : 0,
         onClick: this.onClick,
         active: active,
@@ -818,7 +817,7 @@ var DotContainer = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return DotContainer;
-}(React$1__default.Component);
+}(React__default.Component);
 
 DotContainer.propTypes = {
   id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -856,10 +855,10 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
           activePage = _this$props.activePage,
           onClick = _this$props.onClick;
       var pages = numberToArray(numOfPages);
-      return /*#__PURE__*/React$1__default.createElement(Indicators, {
+      return /*#__PURE__*/React__default.createElement(Indicators, {
         className: cssPrefix("pagination")
       }, pages.map(function (item, i) {
-        return /*#__PURE__*/React$1__default.createElement(DotContainer, {
+        return /*#__PURE__*/React__default.createElement(DotContainer, {
           key: i,
           id: i,
           active: i === activePage,
@@ -870,7 +869,7 @@ var Pagination = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Pagination;
-}(React$1__default.Component);
+}(React__default.Component);
 
 Pagination.defaultProps = {
   onClick: noop
@@ -1048,7 +1047,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
 
         var childWidth = _this.calculateChildWidth();
 
-        var totalItems = React$1.Children.toArray(children).length;
+        var totalItems = React.Children.toArray(children).length;
         var hiddenSlots = totalItems - itemsToShow;
         var moveBy = activeIndex * -1;
         var emptySlots = itemsToShow - (totalItems - activeIndex);
@@ -1088,7 +1087,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
 
       var sliderHeight = sliderNode.contentRect.height;
       var nextState = {};
-      var childrenLength = React$1.Children.toArray(children).length;
+      var childrenLength = React.Children.toArray(children).length;
 
       if (verticalMode) {
         var childHeight = sliderHeight / childrenLength; // We use Math.min because we don't want to make the child smaller
@@ -1117,7 +1116,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
        */
 
 
-      var childrenLength = React$1.Children.toArray(children).length || 1;
+      var childrenLength = React.Children.toArray(children).length || 1;
       var childWidth = 0;
 
       if (verticalMode) {
@@ -1158,7 +1157,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
             itemsToShow = _this$getDerivedProps6.itemsToShow,
             children = _this$getDerivedProps6.children;
 
-        var childrenLength = React$1.Children.toArray(children).length || 1;
+        var childrenLength = React.Children.toArray(children).length || 1;
 
         _this.setState(function (currentState) {
           // We might need to change the selected index when the size of the container changes
@@ -1216,7 +1215,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
 
 
       var roundedIdx = Math.round(index);
-      var child = React$1.Children.toArray(children)[roundedIdx];
+      var child = React.Children.toArray(children)[roundedIdx];
       return {
         item: child.props,
         index: roundedIdx
@@ -1229,7 +1228,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
           itemsToShow = _this$getDerivedProps8.itemsToShow,
           itemsToScroll = _this$getDerivedProps8.itemsToScroll;
 
-      var childrenLength = React$1.Children.toArray(children).length || 1;
+      var childrenLength = React.Children.toArray(children).length || 1;
       var notEnoughItemsToShow = itemsToShow > childrenLength;
       var limit = getPrev ? 0 : childrenLength - itemsToShow;
 
@@ -1252,7 +1251,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
 
 
       var roundedIdx = Math.round(nextItemIndex);
-      var asElement = React$1.Children.toArray(children)[roundedIdx];
+      var asElement = React.Children.toArray(children)[roundedIdx];
       var asObj = {
         item: asElement.props,
         index: roundedIdx
@@ -1289,7 +1288,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
         var childWidth = _this.calculateChildWidth(); // determine how far can user swipe
 
 
-        var childrenLength = React$1.Children.toArray(children).length || 1;
+        var childrenLength = React.Children.toArray(children).length || 1;
         var goingNext = !verticalMode && dir === "Left" && !isRTL || !verticalMode && dir === "Right" && isRTL || verticalMode && dir === "Up";
         var goingBack = !verticalMode && dir === "Right" && !isRTL || !verticalMode && dir === "Left" && isRTL || verticalMode && dir === "Down";
         var horizontalSwipe = dir === "Left" || dir === "Right";
@@ -1607,7 +1606,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
           itemsToShow = _this$getDerivedProps18.itemsToShow;
 
       var activeIndex = _this.state.activeIndex;
-      var childrenLength = React$1.Children.toArray(children).length;
+      var childrenLength = React.Children.toArray(children).length;
       var safeNextItemId = Math.max(0, nextItemId); // don't allow negative numbers
 
       var isPrev = activeIndex > safeNextItemId;
@@ -1649,7 +1648,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
           children = _this$getDerivedProps19.children,
           itemsToShow = _this$getDerivedProps19.itemsToShow;
 
-      var childrenLength = React$1.Children.toArray(children).length;
+      var childrenLength = React.Children.toArray(children).length;
       var safeItemsToShow = Math.max(itemsToShow, 1);
       var numOfPages = Math.ceil(childrenLength / safeItemsToShow);
       return numOfPages || 1;
@@ -1666,7 +1665,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
 
         var numOfPages = _this.getNumOfPages();
 
-        var childrenLength = React$1.Children.toArray(children).length;
+        var childrenLength = React.Children.toArray(children).length;
         var inRangeItemsToShow = Math.min(childrenLength, itemsToShow); // watch out from 0 (so we wont divide by zero)
 
         var safeItemsToShow = Math.max(inRangeItemsToShow, 1);
@@ -1718,8 +1717,8 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
           activeIndex = _this$state5.activeIndex,
           sliderContainerWidth = _this$state5.sliderContainerWidth;
       var nextItem = this.getNextItemIndex(activeIndex, false);
-      var currentChildrenLength = React$1.Children.toArray(children).length;
-      var prevChildrenLength = React$1.Children.toArray(prevProps.children).length; // update pages (for pagination)
+      var currentChildrenLength = React.Children.toArray(children).length;
+      var prevChildrenLength = React.Children.toArray(prevProps.children).length; // update pages (for pagination)
 
       if (prevChildrenLength !== currentChildrenLength || prevProps.itemsToShow !== itemsToShow || prevProps.itemsToScroll !== itemsToScroll || prevProps.breakPoints !== breakPoints || sliderContainerWidth !== prevState.sliderContainerWidth) {
         // we mimic a container resize to recalculate item width when itemsToShow are updated
@@ -1809,29 +1808,29 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
       var canSlideNext = activeIndex !== this.getNextItemIndex(activeIndex, false);
       var disabledPrevArrow = !canSlidePrev && disableArrowsOnEnd;
       var disabledNextArrow = !canSlideNext && disableArrowsOnEnd;
-      return /*#__PURE__*/React$1__default.createElement(CarouselWrapper, {
+      return /*#__PURE__*/React__default.createElement(CarouselWrapper, {
         isRTL: isRTL,
         className: "".concat(cssPrefix("carousel-wrapper"), " ").concat(className),
         style: style
-      }, /*#__PURE__*/React$1__default.createElement(StyledCarousel, {
+      }, /*#__PURE__*/React__default.createElement(StyledCarousel, {
         className: cssPrefix("carousel"),
         size: {
           height: rootHeight
         }
-      }, /*#__PURE__*/React$1__default.createElement(Only, {
+      }, /*#__PURE__*/React__default.createElement(Only, {
         when: showArrows
       }, renderArrow ? renderArrow({
         type: consts.PREV,
         onClick: this.onPrevStart,
         isEdge: !canSlidePrev
-      }) : /*#__PURE__*/React$1__default.createElement(Arrow, {
+      }) : /*#__PURE__*/React__default.createElement(Arrow, {
         onClick: this.onPrevStart,
         direction: verticalMode ? Arrow.up : Arrow.left,
         disabled: disabledPrevArrow
-      })), /*#__PURE__*/React$1__default.createElement(SliderContainer, {
+      })), /*#__PURE__*/React__default.createElement(SliderContainer, {
         className: cssPrefix("slider-container"),
         ref: this.setRef("sliderContainer")
-      }, /*#__PURE__*/React$1__default.createElement(Slider, {
+      }, /*#__PURE__*/React__default.createElement(Slider, {
         verticalMode: verticalMode,
         isRTL: isRTL,
         easing: easing,
@@ -1843,9 +1842,9 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
         className: cssPrefix("slider"),
         ref: this.setRef("slider"),
         outerSpacing: outerSpacing
-      }, /*#__PURE__*/React$1__default.createElement(Track, {
+      }, /*#__PURE__*/React__default.createElement(Track, {
         verticalMode: verticalMode,
-        children: React$1.Children.toArray(children),
+        children: React.Children.toArray(children),
         childWidth: childWidth,
         currentItem: activeIndex,
         autoTabIndexVisibleItems: autoTabIndexVisibleItems,
@@ -1859,23 +1858,23 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
         onSwiped: this.onSwiped,
         onSwiping: this.onSwiping,
         onItemClick: focusOnSelect ? this.goTo : undefined
-      }))), /*#__PURE__*/React$1__default.createElement(Only, {
+      }))), /*#__PURE__*/React__default.createElement(Only, {
         when: showArrows
       }, renderArrow ? renderArrow({
         type: consts.NEXT,
         onClick: this.onNextStart,
         isEdge: !canSlideNext
-      }) : /*#__PURE__*/React$1__default.createElement(Arrow, {
+      }) : /*#__PURE__*/React__default.createElement(Arrow, {
         onClick: this.onNextStart,
         direction: verticalMode ? Arrow.down : Arrow.right,
         disabled: disabledNextArrow
-      }))), /*#__PURE__*/React$1__default.createElement(Only, {
+      }))), /*#__PURE__*/React__default.createElement(Only, {
         when: pagination
       }, renderPagination ? renderPagination({
         pages: pages,
         activePage: activePage,
         onClick: this.onIndicatorClick
-      }) : /*#__PURE__*/React$1__default.createElement(Pagination, {
+      }) : /*#__PURE__*/React__default.createElement(Pagination, {
         numOfPages: numOfPages,
         activePage: activePage,
         onClick: this.onIndicatorClick
@@ -1884,7 +1883,7 @@ var Carousel = /*#__PURE__*/function (_React$Component) {
   }]);
 
   return Carousel;
-}(React$1__default.Component);
+}(React__default.Component);
 
 Carousel.defaultProps = {
   className: "",
