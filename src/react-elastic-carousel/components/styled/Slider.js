@@ -48,21 +48,24 @@ const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
 };
 
 // We use attributes (style) to bypass multiple creation of classes (dynamic styling)
-export default function Slider(sliderProps) {
-  return styled.div.attrs(() => ({
-    style: {
-      transition: calcTransition(sliderProps),
-      left: calcLeft(sliderProps),
-      right: calcRight(sliderProps),
-      top: calcTop(sliderProps),
-    },
-  }))`
-    position: absolute;
-    display: flex;
-    flex-direction: ${sliderProps.verticalMode ? "column" : "row"};
-    ${sliderProps.verticalMode ? "min-height: 100%;" : ""};
-    ${sliderProps.verticalMode
-      ? ""
-      : `margin: 0 ${sliderProps.outerSpacing}px;`};
-  `;
+function _Slider(sliderProps) {
+  <div>{sliderProps.children}</div>;
 }
+
+const Slider = styled(_Slider).attrs((props) => ({
+  style: {
+    transition: calcTransition(props),
+    left: calcLeft(props),
+    right: calcRight(props),
+    top: calcTop(props),
+  },
+}))`
+  position: absolute;
+  display: flex;
+  flex-direction: ${(props) => (props.verticalMode ? "column" : "row")};
+  ${(props) => (props.verticalMode ? "min-height: 100%;" : "")};
+  ${(props) =>
+    props.verticalMode ? "" : `margin: 0 ${props.outerSpacing}px;`};
+`;
+
+export default Slider;
