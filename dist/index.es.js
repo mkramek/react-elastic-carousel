@@ -376,7 +376,7 @@ var consts = {
 };
 
 function _templateObject$1() {
-  var data = _taggedTemplateLiteral(["\n  box-sizing: border-box;\n  display: flex;\n  overflow: hidden;\n  user-select: none;\n  justify-content: ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  box-sizing: border-box;\n  display: flex;\n  overflow: hidden;\n  user-select: none;\n  justify-content: ", ";\n  class-name: ", ";\n"]);
 
   _templateObject$1 = function _templateObject() {
     return data;
@@ -384,16 +384,14 @@ function _templateObject$1() {
 
   return data;
 }
-var ItemWrapper = styled.div.attrs(function (_ref) {
-  var style = _ref.style;
-  return {
-    style: style,
-    className: cssPrefix("item-wrapper")
-  };
-})(_templateObject$1(), function (_ref2) {
-  var itemPosition = _ref2.itemPosition;
+var ItemWrapper = styled.div.withConfig({
+  shouldForwardProp: function shouldForwardProp(prop) {
+    return prop !== "itemPosition";
+  }
+})(_templateObject$1(), function (_ref) {
+  var itemPosition = _ref.itemPosition;
   return itemPosition;
-});
+}, cssPrefix("item-wrapper"));
 ItemWrapper.defaultProps = {
   style: {},
   itemPosition: consts.CENTER
