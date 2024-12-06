@@ -1,10 +1,10 @@
 {
-  "name": "react-elastic-carousel",
+  "name": "@mkramek/react-elastic-carousel",
   "version": "0.11.5",
   "description": "A flexible and responsive carousel component for react",
-  "author": "sag1v (Sagiv Ben Giat)",
+  "author": "Miłosz Kramek <milosz.kramek@gmail.com>",
   "license": "MIT",
-  "repository": "sag1v/react-elastic-carousel",
+  "repository": "mkramek/react-elastic-carousel",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "types": "./dist/index.d.ts",
