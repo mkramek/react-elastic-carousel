@@ -2384,10 +2384,10 @@ __metadata:
     rollup-plugin-url: "npm:^1.4.0"
     styled-components: "npm:^5.1.0"
   peerDependencies:
-    prop-types: ^15.5.4
-    react: 15 - 17
-    react-dom: 15 - 17
-    styled-components: ^5.1.0
+    prop-types: ">=15.5.4"
+    react: ">=15"
+    react-dom: ">=15"
+    styled-components: ">=5.1.0"
   languageName: unknown
   linkType: soft
 
