@@ -11,7 +11,7 @@ var React__default = _interopDefault(React);
 var reactSwipeable = require('react-swipeable');
 var cx = _interopDefault(require('classnames'));
 var ResizeObserver = _interopDefault(require('resize-observer-polyfill'));
-var Only = _interopDefault(require('react-only-when'));
+var Only = _interopDefault(require('@uiw/react-only-when'));
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {

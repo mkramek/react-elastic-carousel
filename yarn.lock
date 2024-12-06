@@ -1850,7 +1850,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4":
+"@babel/runtime@npm:^7.14.8, @babel/runtime@npm:^7.15.4, @babel/runtime@npm:^7.22.6":
   version: 7.26.0
   resolution: "@babel/runtime@npm:7.26.0"
   dependencies:
@@ -2339,6 +2339,8 @@ __metadata:
     "@babel/preset-env": "npm:^7.3.4"
     "@babel/preset-react": "npm:^7.0.0"
     "@rollup/plugin-replace": "npm:^2.3.4"
+    "@types/classnames": "npm:^2.3.4"
+    "@uiw/react-only-when": "npm:^3.0.1"
     babel-eslint: "npm:^9.0.0"
     classnames: "npm:^2.2.6"
     concurrently: "npm:^4.1.0"
@@ -2365,7 +2367,6 @@ __metadata:
     prettier-eslint: "npm:^8.8.2"
     react: "npm:^16.12.0"
     react-dom: "npm:^16.12.0"
-    react-only-when: "npm:^1.0.2"
     react-resizable: "npm:^1.7.5"
     react-scripts: "npm:^2.1.8"
     react-swipeable: "npm:^5.5.1"
@@ -3009,6 +3010,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/classnames@npm:^2.3.4":
+  version: 2.3.4
+  resolution: "@types/classnames@npm:2.3.4"
+  dependencies:
+    classnames: "npm:*"
+  checksum: 10c0/25de08662e5c68314d23527671a29c2125e399c015d67ffd4b304aa3330f1aacd452bcc74964e04eaad35999c4d474ded4fbb8c4c920026e43783f76560d6b0c
+  languageName: node
+  linkType: hard
+
 "@types/common-tags@npm:^1.8.0":
   version: 1.8.0
   resolution: "@types/common-tags@npm:1.8.0"
@@ -3450,6 +3460,19 @@ __metadata:
     typescript:
       optional: true
   checksum: 10c0/ba48c61a0c2eca24662735c2161e8b7602f3f7cd7123fe6aed1d9755052318606645cc6d17d2a05914dd526bf8953427c6c4a9eacf3ccae4f993d9116592efd2
+  languageName: node
+  linkType: hard
+
+"@uiw/react-only-when@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@uiw/react-only-when@npm:3.0.1"
+  dependencies:
+    "@babel/runtime": "npm:^7.22.6"
+  peerDependencies:
+    "@babel/runtime": ">=7.10.0"
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: 10c0/0a99c34857f2bdd2c15ec9cc686dc371ea137b4d4b6020141ea286737dd0c478a710f6a0b6aabdd5f2ba5a41afef17e2cdf59518dc2f198d5c26cc8b3a8e1819
   languageName: node
   linkType: hard
 
@@ -6523,6 +6546,13 @@ __metadata:
     isobject: "npm:^3.0.0"
     static-extend: "npm:^0.1.1"
   checksum: 10c0/d44f4afc7a3e48dba4c2d3fada5f781a1adeeff371b875c3b578bc33815c6c29d5d06483c2abfd43a32d35b104b27b67bfa39c2e8a422fa858068bd756cfbd42
+  languageName: node
+  linkType: hard
+
+"classnames@npm:*":
+  version: 2.5.1
+  resolution: "classnames@npm:2.5.1"
+  checksum: 10c0/afff4f77e62cea2d79c39962980bf316bacb0d7c49e13a21adaadb9221e1c6b9d3cdb829d8bb1b23c406f4e740507f37e1dcf506f7e3b7113d17c5bab787aa69
   languageName: node
   linkType: hard
 
@@ -21232,17 +21262,6 @@ __metadata:
     react-simple-code-editor: "npm:^0.10.0"
     unescape: "npm:^1.0.1"
   checksum: 10c0/b099b1cfd4332316ab9dc4d3d93ca5ca826c320319ab6111ff11a86c01d2ce2a92ec14a4286b06a9a3cf51e51ebe6f792fb04118c372d9dbe0e6a946652f4139
-  languageName: node
-  linkType: hard
-
-"react-only-when@npm:^1.0.2":
-  version: 1.0.2
-  resolution: "react-only-when@npm:1.0.2"
-  peerDependencies:
-    prop-types: ^15.5.4
-    react: ^15.0.0 || ^16.0.0
-    react-dom: ^15.0.0 || ^16.0.0
-  checksum: 10c0/292d76f52af646fbcb86ab22c3913675b3688febadd7e2b1d466bacf65cb7990a3d033e1abac36b155dc75d91cb6443dd9a0bd1cd48d7020517ffda4f88e3da8
   languageName: node
   linkType: hard
 

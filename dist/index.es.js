@@ -4,7 +4,7 @@ import React, { Children } from 'react';
 import { Swipeable } from 'react-swipeable';
 import cx from 'classnames';
 import ResizeObserver from 'resize-observer-polyfill';
-import Only from 'react-only-when';
+import Only from '@uiw/react-only-when';
 
 function _classCallCheck(instance, Constructor) {
   if (!(instance instanceof Constructor)) {
