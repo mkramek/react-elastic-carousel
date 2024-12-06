@@ -1,5 +1,5 @@
 {
-  "name": "@mkramek/react-elastic-carousel",
+  "name": "react-elastic-carousel",
   "version": "0.11.5",
   "description": "A flexible and responsive carousel component for react",
   "author": "Miłosz Kramek <milosz.kramek@gmail.com>",
