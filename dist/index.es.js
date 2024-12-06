@@ -565,7 +565,11 @@ function _templateObject$5() {
 
   return data;
 }
-var CarouselWrapper = styled.div(_templateObject$5(), function (_ref) {
+var CarouselWrapper = styled.div.withConfig({
+  shouldForwardProp: function shouldForwardProp(prop) {
+    return prop !== "isRTL";
+  }
+})(_templateObject$5(), function (_ref) {
   var isRTL = _ref.isRTL;
   return isRTL ? "rtl" : "ltr";
 });
