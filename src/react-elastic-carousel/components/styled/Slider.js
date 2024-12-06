@@ -5,7 +5,7 @@ const calcLeft = ({
   verticalMode,
   isSwiping,
   swipedSliderPosition,
-  sliderPosition
+  sliderPosition,
 }) => {
   if (verticalMode || isRTL) {
     return "auto";
@@ -19,7 +19,7 @@ const calcRight = ({
   verticalMode,
   isSwiping,
   swipedSliderPosition,
-  sliderPosition
+  sliderPosition,
 }) => {
   if (!verticalMode && isRTL) {
     return `${isSwiping ? swipedSliderPosition : sliderPosition}px`;
@@ -32,7 +32,7 @@ const calcTop = ({
   verticalMode,
   isSwiping,
   swipedSliderPosition,
-  sliderPosition
+  sliderPosition,
 }) => {
   if (!verticalMode) {
     return "auto";
@@ -48,18 +48,21 @@ const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
 };
 
 // We use attributes (style) to bypass multiple creation of classes (dynamic styling)
-export default styled.div.attrs(props => ({
-  style: {
-    transition: calcTransition(props),
-    left: calcLeft(props),
-    right: calcRight(props),
-    top: calcTop(props)
-  }
-}))`
-  position: absolute;
-  display: flex;
-  flex-direction: ${({ verticalMode }) => (verticalMode ? "column" : "row")};
-  ${({ verticalMode }) => (verticalMode ? "min-height: 100%;" : "")};
-  ${({ verticalMode, outerSpacing }) =>
-    verticalMode ? "" : `margin: 0 ${outerSpacing}px;`};
-`;
+export default function Slider(sliderProps) {
+  return styled.div.attrs(() => ({
+    style: {
+      transition: calcTransition(sliderProps),
+      left: calcLeft(sliderProps),
+      right: calcRight(sliderProps),
+      top: calcTop(sliderProps),
+    },
+  }))`
+    position: absolute;
+    display: flex;
+    flex-direction: ${sliderProps.verticalMode ? "column" : "row"};
+    ${sliderProps.verticalMode ? "min-height: 100%;" : ""};
+    ${sliderProps.verticalMode
+      ? ""
+      : `margin: 0 ${sliderProps.outerSpacing}px;`};
+  `;
+}
