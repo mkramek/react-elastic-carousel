@@ -423,7 +423,7 @@ function _templateObject$2() {
 var SliderContainer = styled.div(_templateObject$2());
 
 function _templateObject$3() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  display: flex;\n  flex-direction: ", ";\n  ", ";\n  ", ";\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  display: flex;\n  flex-direction: ", ";\n  ", ";\n  ", ";\n  transition: ", ";\n  left: ", ";\n  right: ", ";\n  top: ", ";\n"]);
 
   _templateObject$3 = function _templateObject() {
     return data;
@@ -484,15 +484,10 @@ var calcTransition = function calcTransition(_ref4) {
 }; // We use attributes (style) to bypass multiple creation of classes (dynamic styling)
 
 
-var Slider = styled.div.attrs(function (props) {
-  return {
-    style: {
-      transition: calcTransition(props),
-      left: calcLeft(props),
-      right: calcRight(props),
-      top: calcTop(props)
-    }
-  };
+var Slider = styled.div.withConfig({
+  shouldForwardProp: function shouldForwardProp(prop) {
+    return !["isSwiping", "verticalMode", "sliderPosition", "swipedSliderPosition", "isRTL", "transitionMs", "easing", "tiltEasing"].includes(prop);
+  }
 })(_templateObject$3(), function (_ref5) {
   var verticalMode = _ref5.verticalMode;
   return verticalMode ? "column" : "row";
@@ -503,6 +498,54 @@ var Slider = styled.div.attrs(function (props) {
   var verticalMode = _ref7.verticalMode,
       outerSpacing = _ref7.outerSpacing;
   return verticalMode ? "" : "margin: 0 ".concat(outerSpacing, "px;");
+}, function (_ref8) {
+  var isSwiping = _ref8.isSwiping,
+      transitionMs = _ref8.transitionMs,
+      easing = _ref8.easing,
+      tiltEasing = _ref8.tiltEasing;
+  return calcTransition({
+    isSwiping: isSwiping,
+    transitionMs: transitionMs,
+    easing: easing,
+    tiltEasing: tiltEasing
+  });
+}, function (_ref9) {
+  var isRTL = _ref9.isRTL,
+      verticalMode = _ref9.verticalMode,
+      isSwiping = _ref9.isSwiping,
+      swipedSliderPosition = _ref9.swipedSliderPosition,
+      sliderPosition = _ref9.sliderPosition;
+  return calcLeft({
+    isRTL: isRTL,
+    verticalMode: verticalMode,
+    isSwiping: isSwiping,
+    swipedSliderPosition: swipedSliderPosition,
+    sliderPosition: sliderPosition
+  });
+}, function (_ref10) {
+  var isRTL = _ref10.isRTL,
+      verticalMode = _ref10.verticalMode,
+      isSwiping = _ref10.isSwiping,
+      swipedSliderPosition = _ref10.swipedSliderPosition,
+      sliderPosition = _ref10.sliderPosition;
+  return calcRight({
+    isRTL: isRTL,
+    verticalMode: verticalMode,
+    isSwiping: isSwiping,
+    swipedSliderPosition: swipedSliderPosition,
+    sliderPosition: sliderPosition
+  });
+}, function (_ref11) {
+  var verticalMode = _ref11.verticalMode,
+      isSwiping = _ref11.isSwiping,
+      swipedSliderPosition = _ref11.swipedSliderPosition,
+      sliderPosition = _ref11.sliderPosition;
+  return calcTop({
+    verticalMode: verticalMode,
+    isSwiping: isSwiping,
+    swipedSliderPosition: swipedSliderPosition,
+    sliderPosition: sliderPosition
+  });
 });
 
 function _templateObject$4() {

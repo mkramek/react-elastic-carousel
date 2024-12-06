@@ -48,18 +48,55 @@ const calcTransition = ({ isSwiping, transitionMs, easing, tiltEasing }) => {
 };
 
 // We use attributes (style) to bypass multiple creation of classes (dynamic styling)
-export default styled.div.attrs((props) => ({
-  style: {
-    transition: calcTransition(props),
-    left: calcLeft(props),
-    right: calcRight(props),
-    top: calcTop(props),
-  },
-}))`
+export default styled.div.withConfig({
+  shouldForwardProp: (prop) =>
+    ![
+      "isSwiping",
+      "verticalMode",
+      "sliderPosition",
+      "swipedSliderPosition",
+      "isRTL",
+      "transitionMs",
+      "easing",
+      "tiltEasing",
+    ].includes(prop),
+})`
   position: absolute;
   display: flex;
   flex-direction: ${({ verticalMode }) => (verticalMode ? "column" : "row")};
   ${({ verticalMode }) => (verticalMode ? "min-height: 100%;" : "")};
   ${({ verticalMode, outerSpacing }) =>
     verticalMode ? "" : `margin: 0 ${outerSpacing}px;`};
+  transition: ${({ isSwiping, transitionMs, easing, tiltEasing }) =>
+    calcTransition({ isSwiping, transitionMs, easing, tiltEasing })};
+  left: ${({
+    isRTL,
+    verticalMode,
+    isSwiping,
+    swipedSliderPosition,
+    sliderPosition,
+  }) =>
+    calcLeft({
+      isRTL,
+      verticalMode,
+      isSwiping,
+      swipedSliderPosition,
+      sliderPosition,
+    })};
+  right: ${({
+    isRTL,
+    verticalMode,
+    isSwiping,
+    swipedSliderPosition,
+    sliderPosition,
+  }) =>
+    calcRight({
+      isRTL,
+      verticalMode,
+      isSwiping,
+      swipedSliderPosition,
+      sliderPosition,
+    })};
+  top: ${({ verticalMode, isSwiping, swipedSliderPosition, sliderPosition }) =>
+    calcTop({ verticalMode, isSwiping, swipedSliderPosition, sliderPosition })};
 `;
